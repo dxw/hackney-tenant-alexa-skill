@@ -4,11 +4,15 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "start": "lambda-local -l index.js -h handler -e fixtures/events/launchRequest.js -t 8",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "alexa-app": "^4.2.3",
     "axios": "^0.18.0",
     "dotenv-safe": "^6.1.0"
+  },
+  "devDependencies": {
+    "lambda-local": "^1.5.2"
   }
 }
