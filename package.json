@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "alexa-app": "^4.2.3",
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "dotenv-safe": "^6.1.0"
   }
 }

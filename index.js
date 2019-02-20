@@ -1,3 +1,5 @@
+require("dotenv-safe").config();
+
 const alexa = require("alexa-app");
 const axios = require("axios");
 
