@@ -1,9 +1,14 @@
 const alexa = require("alexa-app");
+const axios = require("axios");
 
 const app = new alexa.app("hackney-tenant");
 
-app.launch((_req, res) => {
-  res.say("OK");
+app.launch(async (_req, res) => {
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/users/1"
+  );
+
+  res.say(response.data.name);
 });
 
 exports.handler = app.lambda();
