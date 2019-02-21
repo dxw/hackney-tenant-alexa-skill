@@ -6,15 +6,21 @@ const axios = require("axios");
 const app = new alexa.app("hackney-tenant");
 
 app.launch(async (_req, res) => {
+  const tenancyAgreementId = "000015/01";
+
   const response = await axios.get(
-    "https://g6bw0g0ojk.execute-api.eu-west-2.amazonaws.com/production/ncc/api/UH/GetAllRentBreakdowns?tenancyAgreementId=000015%2F01",
+    `https://g6bw0g0ojk.execute-api.eu-west-2.amazonaws.com/production/ncc/api/UH/GetAllRentBreakdowns?tenancyAgreementId=${encodeURIComponent(
+      tenancyAgreementId
+    )}`,
     {
       headers: { "x-api-key": process.env.HACKNEY_API_KEY },
       timeout: 5000
     }
   );
 
-  res.say("Your balance is as follows.");
+  res.say(
+    `The balance for tenancy agreement <say-as interpret-as="digits">${tenancyAgreementId}</say-as> is as follows.`
+  );
 
   for (const rent of response.data) {
     res.say(`${rent.description.trim()}: £${rent.value}.`);
