@@ -8,10 +8,19 @@ const app = new alexa.app("hackney-tenant");
 app.launch(async (_req, res) => {
   const response = await axios.get(
     "https://g6bw0g0ojk.execute-api.eu-west-2.amazonaws.com/production/ncc/api/UH/GetAllRentBreakdowns?tenancyAgreementId=000015%2F01",
-    { headers: { "x-api-key": process.env.HACKNEY_API_KEY } }
+    {
+      headers: { "x-api-key": process.env.HACKNEY_API_KEY },
+      timeout: 5000
+    }
   );
 
   res.say(response.data[0].description);
 });
 
-exports.handler = app.lambda();
+app.error = (err, _req, res) => {
+  console.error(err);
+
+  res.say("Oops. Something went wrong. Please try again.");
+};
+
+module.exports.handler = app.lambda();
