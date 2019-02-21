@@ -14,7 +14,11 @@ app.launch(async (_req, res) => {
     }
   );
 
-  res.say(response.data[0].description);
+  res.say("Your balance is as follows.");
+
+  for (const rent of response.data) {
+    res.say(`${rent.description.trim()}: £${rent.value}.`);
+  }
 });
 
 app.error = (err, _req, res) => {
