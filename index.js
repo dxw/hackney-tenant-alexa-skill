@@ -22,8 +22,8 @@ app.launch(async (_req, res) => {
     `The balance for tenancy agreement <say-as interpret-as="digits">${tenancyAgreementId}</say-as> is as follows.`
   );
 
-  for (const rent of response.data) {
-    res.say(`${rent.description.trim()}: £${rent.value}.`);
+  for (const balance of response.data) {
+    res.say(`${balance.description.trim()}: £${balance.value}.`);
   }
 });
 
