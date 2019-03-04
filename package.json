@@ -1,5 +1,5 @@
 {
-  "name": "hackney-tenant-alexa",
+  "name": "hackney-tenant-alexa-skill",
   "version": "0.0.1",
   "private": true,
   "main": "index.js",
